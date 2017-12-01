@@ -109,25 +109,42 @@ def check_one_side(charec, map, up, left):
      2 for exit point
     """
 
+    # make sure 'up' and 'left is int
+    up = int(up)
+    left = int(left)
+    # put solver view in solver_x and solver_y
+    solver_x = charec[0] - up
+    solver_y = charec[1] - left
+    # for debug
+    print("x_solver= ", end='')
+    print(solver_x)
+    print("y_solver= ", end='')
+    print(solver_y)
+
     # check
-    if map[(charec[0] - up)][(charec[1] - left)] == 0 or map[(charec[0] - up)][(charec[1] - left)] == '0':
+    if map[solver_x][solver_y] == 0 or map[solver_x][solver_y] == '0':
         # add empty address to stack
-        stack_list.append([(charec[0] - up)][(charec[1] - left)])
+        stack_list.append([solver_x, solver_y])
         # for debug
-        print("up is empty")
+        print("block is empty")
         return 0
-    elif map[(charec[0] - up)][(charec[1] - left)] == 1 or map[(charec[0] - up)][(charec[1] - left)] == '1':
+    elif map[solver_x][solver_y] == 1 or map[solver_x][solver_y] == '1':
         # for debug
         print("find wall")
         return 1
-    elif map[(charec[0] - up)][(charec[1] - left)] == '$':
-        stack_list.append([(charec[0] - up)][(charec[1] - left)])
+    elif map[solver_x][solver_y] == '$':
+        stack_list.append([solver_x, solver_y])
         # for debug
         print("find exit")
         return 2
 
 
 # ################### main ################### #
+
+# test
+x = -1
+print("test")
+print(1 - x)
 
 # the first line of input is the number of rows of the array
 x_of_maze = int(input("Enter number of x(s),row(s): "))
@@ -146,3 +163,6 @@ place_of_solver = find_start_point(main_maze, x_of_maze, y_of_maze)
 
 # stack , global
 stack_list = []
+
+# for debug test
+check_udlr(place_of_solver, main_maze)

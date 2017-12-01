@@ -115,11 +115,6 @@ def check_one_side(charec, map, up, left):
     # put solver view in solver_x and solver_y
     solver_x = charec[0] - up
     solver_y = charec[1] - left
-    # for debug
-    print("x_solver= ", end='')
-    print(solver_x)
-    print("y_solver= ", end='')
-    print(solver_y)
 
     # check
     if map[solver_x][solver_y] == 0 or map[solver_x][solver_y] == '0':
@@ -140,11 +135,6 @@ def check_one_side(charec, map, up, left):
 
 
 # ################### main ################### #
-
-# test
-x = -1
-print("test")
-print(1 - x)
 
 # the first line of input is the number of rows of the array
 x_of_maze = int(input("Enter number of x(s),row(s): "))

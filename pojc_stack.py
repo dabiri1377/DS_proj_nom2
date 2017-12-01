@@ -1,7 +1,46 @@
 # def get_maze_from_user():
-def check_udlr(charec):
+def check_udlr(charec, map):
+    """
+    
+    :param charec:
+     place of solver
+    :param map:
+     matrix of maze
+    :return: 
+     0 for find a way but no exit point and all way pushed into stack
+     1 for dead end
+     2 for exit point finded and pushed in stack 
+    """
     # for debug
     print("UDLR")
+
+    # #check up & down & left & right
+    # check up
+    temp_up = check_one_side(charec, map, 1, 0)
+    # check down
+    temp_down = check_one_side(charec, map, -1, 0)
+    # check left
+    temp_left = check_one_side(charec, map, 0, 1)
+    # check right
+    temp_right = check_one_side(charec, map, 0, -1)
+
+    # sum of temp's
+    temp_sum = temp_up + temp_right + temp_left + temp_down
+    if temp_down == 2 or temp_left == 2 or temp_right == 2 or temp_up == 2:
+        # for debug
+        print("UDLR find exit")
+
+        return 2
+    elif temp_sum == 4:
+        # for debug
+        print("UDLR find deadend")
+
+        return 1
+    else:
+        # for debug
+        print("find a way")
+
+        return 0
 
 
 def check_one_side(charec, map, up, left):
@@ -37,6 +76,7 @@ def check_one_side(charec, map, up, left):
         print("find wall")
         return 1
     elif map[(charec[0] - up)][(charec[1] - left)] == '$':
+        stack_list.append([(charec[0] - up)][(charec[1] - left)])
         # for debug
         print("find exit")
         return 2

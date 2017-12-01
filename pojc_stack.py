@@ -44,7 +44,7 @@ def find_start_point(temp_maze, x, y):
     return place_of_maze_solver
 
 
-def check_udlr(charec, map):
+def check_udlr(charec, map, x_max, y_max):
     """
     
     :param charec:
@@ -59,15 +59,15 @@ def check_udlr(charec, map):
     # for debug
     print("UDLR")
 
-    # #check up & down & left & right
+    # check up & down & left & right
     # check up
-    temp_up = check_one_side(charec, map, 1, 0)
+    temp_up = check_one_side(charec, map, 1, 0, x_max, y_max)
     # check down
-    temp_down = check_one_side(charec, map, -1, 0)
+    temp_down = check_one_side(charec, map, -1, 0, x_max, y_max)
     # check left
-    temp_left = check_one_side(charec, map, 0, 1)
+    temp_left = check_one_side(charec, map, 0, 1, x_max, y_max)
     # check right
-    temp_right = check_one_side(charec, map, 0, -1)
+    temp_right = check_one_side(charec, map, 0, -1, x_max, y_max)
 
     # sum of temp's
     temp_sum = temp_up + temp_right + temp_left + temp_down
@@ -88,7 +88,7 @@ def check_udlr(charec, map):
         return 0
 
 
-def check_one_side(charec, map, up, left):
+def check_one_side(charec, map, up, left, x_max_maze, y_max_maze):
     """
 
     :param charec:
@@ -115,9 +115,13 @@ def check_one_side(charec, map, up, left):
     # put solver view in solver_x and solver_y
     solver_x = charec[0] - up
     solver_y = charec[1] - left
-
+    # check edge's
+    if solver_x < 0 or solver_x > x_max_maze or solver_y < 0 or solver_y > y_max_maze:
+        # for debug
+        print("find wall")
+        return 1
     # check
-    if map[solver_x][solver_y] == 0 or map[solver_x][solver_y] == '0':
+    elif map[solver_x][solver_y] == 0 or map[solver_x][solver_y] == '0':
         # add empty address to stack
         stack_list.append([solver_x, solver_y])
         # for debug
@@ -155,4 +159,5 @@ place_of_solver = find_start_point(main_maze, x_of_maze, y_of_maze)
 stack_list = []
 
 # for debug test
-check_udlr(place_of_solver, main_maze)
+print("check udlr = ", end='')
+print(check_udlr(place_of_solver, main_maze, x_of_maze, y_of_maze))

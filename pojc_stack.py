@@ -1,6 +1,45 @@
 # def get_maze_from_user():
+def check_udlr(charec):
+    # for debug
+    print("UDLR")
 
 
+def check_one_side(charec, map, up, left):
+    """
+
+    :param charec:
+     place of solver
+    :param map: 
+     matrix of maze
+    :param up: 
+     if up == 1 : check up
+     if up == 0 : check this row
+     if up == -1 : check down
+    :param left: 
+     if left == 1 : check left
+     if left == 0 : check this column
+     if left == -1 : check right
+    :return: 
+     0 for find a way but no exit point
+     1 for wall 
+     2 for exit point
+    """
+
+    # check
+    if map[(charec[0] - up)][(charec[1] - left)] == 0 or map[(charec[0] - up)][(charec[1] - left)] == '0':
+        # add empty address to stack
+        stack_list.append([(charec[0] - up)][(charec[1] - left)])
+        # for debug
+        print("up is empty")
+        return 0
+    elif map[(charec[0] - up)][(charec[1] - left)] == 1 or map[(charec[0] - up)][(charec[1] - left)] == '1':
+        # for debug
+        print("find wall")
+        return 1
+    elif map[(charec[0] - up)][(charec[1] - left)] == '$':
+        # for debug
+        print("find exit")
+        return 2
 
 
 # ################### main ################### #
@@ -52,63 +91,3 @@ for i_1 in range(row_of_maze):
 place_of_solver = [start_point_x, start_point_y]
 # stack , global
 stack_list = []
-
-
-def check_UDLR(charec):
-    # for debug
-    print("UDLR")
-
-
-def check_one_side(charec, map, up, left):
-    """
-
-    :param charec:
-     place of solver
-    :param map: 
-     matrix of maze
-    :param up: 
-     if up == 1 : check up
-     if up == 0 : check down
-    :param left: 
-     if left == 1 : check left
-     if left == 0 : check rigth
-    :return: 
-     1 for dead end 
-     2 for exit point
-     0 for find a way but no exit point
-    """
-
-    # check up is open to check
-    if charec[0] - 1 > 0:
-        # check up
-        if temp_maze[charec[0] - 1][charec[1]] == 0 or temp_maze[charec[0] - 1][charec[1]] == '0':
-            stack_list.append([charec[0] - 1][charec[1]])
-            # for debug
-            print("up is empty")
-        if temp_maze[charec[0] - 1][charec[1]] == '$':
-            # for debug
-            print("find exit")
-
-    # check down is open to check
-    if (charec[0] + 1) > 0:
-        # check down
-        if temp_maze[charec[0] + 1][charec[1]] == 0 or temp_maze[charec[0] + 1][charec[1]] == '0':
-            stack_list.append([charec[0] + 1][charec[1]])
-            # for debug
-            print("down is empty")
-
-    # check left is open to check
-    if charec[1] - 1 > 0:
-        # check left
-        if temp_maze[charec[0]][charec[1] - 1] == 0 or temp_maze[charec[0]][charec[1] - 1] == '0':
-            stack_list.append([charec[0]][charec[1] - 1])
-            # for debug
-            print("left is empty")
-
-    # check right is open to check
-    if charec[1] + 1 > 0:
-        # check right
-        if temp_maze[charec[0]][charec[1] + 1] == 0 or temp_maze[charec[0]][charec[1] + 1] == '0':
-            stack_list.append([charec[0]][charec[1] + 1])
-            # for debug
-            print("right is empty")

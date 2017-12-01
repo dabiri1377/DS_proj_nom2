@@ -133,7 +133,7 @@ def check_one_side(charec, map, up, left):
 x_of_maze = int(input("Enter number of x(s),row(s): "))
 y_of_maze = int(input("Enter number of y(s),col(s): "))
 
-main_maze = get_maze_from_user()
+main_maze = get_maze_from_user(x_of_maze)
 
 # show maze
 for i_1 in range(x_of_maze):

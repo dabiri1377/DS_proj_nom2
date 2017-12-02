@@ -21,15 +21,27 @@ def get_maze_from_user(x_of_maze_for_get_maze):
     return temp_maze
 
 
-def find_start_point(temp_maze, x, y):
-    # x of start point
+def find_start_point(temp_maze, x_of_maze_for_find_start_point, y):
+    """
+    
+    :param temp_maze:
+     t=import the main maze
+    :param x_of_maze_for_find_start_point: 
+     the x of the maze
+    :param y: 
+     the y of the maze
+    :return: 
+     1 for more than a start ponit
+     else return place of start
+    """
+    # x_of_maze_for_find_start_point of start point
     start_point_x = int(0)
     # y of start point
     start_point_y = int(0)
     # flag for check for more than a start point
     flag_for_start_point = 0
-    # searche for start point in matrix
-    for i_1 in range(x):
+    # searche for start point in matrix_of_maze_for_find_start_point
+    for i_1 in range(x_of_maze_for_find_start_point):
         for j_1 in range(y):
             if temp_maze[i_1][j_1] == '*':
                 if flag_for_start_point == 0:
@@ -41,6 +53,7 @@ def find_start_point(temp_maze, x, y):
                     flag_for_start_point = 1
                 else:
                     print("Err: more than 1 start point")
+                    return 1
 
     place_of_maze_solver = [start_point_x, start_point_y]
     return place_of_maze_solver

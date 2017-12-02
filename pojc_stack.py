@@ -1,3 +1,5 @@
+import time
+
 def get_maze_from_user(x_of_maze_for_get_maze):
     """
     get maze from user and return it
@@ -6,7 +8,6 @@ def get_maze_from_user(x_of_maze_for_get_maze):
     """
 
     # guide user
-    print("now enter colma of maze then perss enter \n")
     print("for wall enter 1")
     print("for exit point enter $")
     print("for empty way enter 0")
@@ -131,8 +132,8 @@ def check_one_side(charec, map, up, left, x_max_maze, y_max_maze):
         return 1
     elif map[solver_x][solver_y] == '$':
         stack_list.append([solver_x, solver_y])
-        # for debug
-        print("find exit")
+        # for show exit point
+        print("find exit in ["+str(solver_x)+","+str(solver_y)+"]")
         return 2
 
 
@@ -140,7 +141,7 @@ def show_maze(x_of_maze_for_show, y_of_maze_for_show, map_for_show_maze):
     # show maze
     for i in range(x_of_maze_for_show):
         for j in range(y_of_maze_for_show):
-            print(map_for_show_maze[i_1][j_1], end=' ')
+            print(map_for_show_maze[i][j], end=' ')
         print("")
 
 
@@ -185,6 +186,15 @@ while flag_2 == 0:
         place_of_solver = solver_next_move
         # call check_udlr and do all thing for 'solver_next_move' and put result in 'result_of_udlr'
         result_of_udlr = check_udlr(place_of_solver, main_maze, x_of_maze, y_of_maze)
+        # if find exit point end while
+        if result_of_udlr == 2:
+            flag_2 = 1
+            # for show progress
+            time.sleep(1)
+            show_maze(x_of_maze, y_of_maze, main_maze)
+            # fix last block to make it good looking
+            main_maze[place_of_solver[0]][place_of_solver[1]] = int(1)
 
-
-        # flag_2 = 1
+        # for show progress
+        time.sleep(1)
+        show_maze(x_of_maze, y_of_maze, main_maze)

@@ -31,7 +31,7 @@ def find_start_point(temp_maze, x_of_maze_for_find_start_point, y):
     :param y: 
      the y of the maze
     :return: 
-     1 for more than a start ponit
+     -1 for more than a start ponit
      else return place of start
     """
     # x_of_maze_for_find_start_point of start point
@@ -53,7 +53,7 @@ def find_start_point(temp_maze, x_of_maze_for_find_start_point, y):
                     flag_for_start_point = 1
                 else:
                     print("Err: more than 1 start point")
-                    return 1
+                    return -1
 
     place_of_maze_solver = [start_point_x, start_point_y]
     return place_of_maze_solver
@@ -170,13 +170,15 @@ main_maze = get_maze_from_user(x_of_maze)
 # show maze
 show_maze(x_of_maze, y_of_maze, main_maze)
 
+
 # [x,y] for maze solver
 place_of_solver = find_start_point(main_maze, x_of_maze, y_of_maze)
+
 
 # stack , global
 stack_list = []
 
-# for debug test
+# for debug test(do not remove)
 print("check udlr = ", end='')
 print(check_udlr(place_of_solver, main_maze, x_of_maze, y_of_maze))
 

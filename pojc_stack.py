@@ -203,6 +203,10 @@ while flag_2 == 0:
         flag_2 = 1
     else:
         solver_next_move = stack_list.pop()
+        # check position of solver not blocked
+        if main_maze[place_of_solver[0]][place_of_solver[1]] == 1:
+            continue
+
         # for debug
         print("solver next move is: " + str(solver_next_move))
 

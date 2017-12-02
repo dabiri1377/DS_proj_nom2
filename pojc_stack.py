@@ -116,24 +116,32 @@ def check_one_side(charec, map, up, left, x_max_maze, y_max_maze):
     # check edge's
     if solver_x < 0 or solver_x > x_max_maze or solver_y < 0 or solver_y > y_max_maze:
         # for debug
-        #print("find wall")
+        # print("find wall")
         return 1
     # check
     elif map[solver_x][solver_y] == 0 or map[solver_x][solver_y] == '0':
         # add empty address to stack
         stack_list.append([solver_x, solver_y])
         # for debug
-        #print("block is empty")
+        # print("block is empty")
         return 0
     elif map[solver_x][solver_y] == 1 or map[solver_x][solver_y] == '1':
         # for debug
-        #print("find wall")
+        # print("find wall")
         return 1
     elif map[solver_x][solver_y] == '$':
         stack_list.append([solver_x, solver_y])
         # for debug
         print("find exit")
         return 2
+
+
+def show_maze(x_of_maze_for_show, y_of_maze_for_show, map_for_show_maze):
+    # show maze
+    for i in range(x_of_maze_for_show):
+        for j in range(y_of_maze_for_show):
+            print(map_for_show_maze[i_1][j_1], end=' ')
+        print("")
 
 
 # ################### main ################### #
@@ -145,10 +153,7 @@ y_of_maze = int(input("Enter number of y(s),col(s): "))
 main_maze = get_maze_from_user(x_of_maze)
 
 # show maze
-for i_1 in range(x_of_maze):
-    for j_1 in range(y_of_maze):
-        print(main_maze[i_1][j_1], end=' ')
-    print("")
+show_maze(x_of_maze, y_of_maze, main_maze)
 
 # [x,y] for maze solver
 place_of_solver = find_start_point(main_maze, x_of_maze, y_of_maze)
@@ -182,4 +187,4 @@ while flag_2 == 0:
         result_of_udlr = check_udlr(place_of_solver, main_maze, x_of_maze, y_of_maze)
 
 
-    flag_2 = 1
+        # flag_2 = 1

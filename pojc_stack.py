@@ -161,19 +161,28 @@ def show_maze(x_of_maze_for_show, y_of_maze_for_show, map_for_show_maze):
 
 # ################### main ################### #
 
-# the first line of input is the number of rows of the array
-x_of_maze = int(input("Enter number of x(s),row(s): "))
-y_of_maze = int(input("Enter number of y(s),col(s): "))
 
-main_maze = get_maze_from_user(x_of_maze)
+flag_true_maze = 0
+while flag_true_maze == 0:
+    # the first line of input is the number of rows of the array
+    x_of_maze = int(input("Enter number of x(s),row(s): "))
+    y_of_maze = int(input("Enter number of y(s),col(s): "))
 
-# show maze
-show_maze(x_of_maze, y_of_maze, main_maze)
+    main_maze = get_maze_from_user(x_of_maze)
 
+    # show maze
+    show_maze(x_of_maze, y_of_maze, main_maze)
 
-# [x,y] for maze solver
-place_of_solver = find_start_point(main_maze, x_of_maze, y_of_maze)
-
+    # [x,y] for maze solver
+    if find_start_point(main_maze, x_of_maze, y_of_maze) != -1:
+        place_of_solver = find_start_point(main_maze, x_of_maze, y_of_maze)
+        flag_true_maze = 1
+    else:
+        # for clear screen
+        print(chr(27) + "[2J")
+        # guide user
+        print("you enter more than 1 start point,")
+        print("reenter maze and fix this problem")
 
 # stack , global
 stack_list = []

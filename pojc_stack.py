@@ -56,8 +56,6 @@ def check_udlr(charec, map, x_max, y_max):
      1 for dead end
      2 for exit point finded and pushed in stack 
     """
-    # for debug
-    print("UDLR")
 
     # check up & down & left & right
     # check up
@@ -83,7 +81,7 @@ def check_udlr(charec, map, x_max, y_max):
         return 1
     else:
         # for debug
-        print("find a way")
+        print("UDLR find a way")
 
         return 0
 
@@ -118,18 +116,18 @@ def check_one_side(charec, map, up, left, x_max_maze, y_max_maze):
     # check edge's
     if solver_x < 0 or solver_x > x_max_maze or solver_y < 0 or solver_y > y_max_maze:
         # for debug
-        print("find wall")
+        #print("find wall")
         return 1
     # check
     elif map[solver_x][solver_y] == 0 or map[solver_x][solver_y] == '0':
         # add empty address to stack
         stack_list.append([solver_x, solver_y])
         # for debug
-        print("block is empty")
+        #print("block is empty")
         return 0
     elif map[solver_x][solver_y] == 1 or map[solver_x][solver_y] == '1':
         # for debug
-        print("find wall")
+        #print("find wall")
         return 1
     elif map[solver_x][solver_y] == '$':
         stack_list.append([solver_x, solver_y])

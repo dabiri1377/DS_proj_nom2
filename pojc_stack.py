@@ -161,3 +161,27 @@ stack_list = []
 # for debug test
 print("check udlr = ", end='')
 print(check_udlr(place_of_solver, main_maze, x_of_maze, y_of_maze))
+
+# flag for while
+flag_2 = 0
+# this while call house in stack and move solver and make last block '1'
+while flag_2 == 0:
+    # check stack is empty or not
+    if not stack_list:
+        # for debug
+        print("List is empty")
+        flag_2 = 1
+    else:
+        solver_next_move = stack_list.pop()
+        # for debug
+        print("solver next move is: " + str(solver_next_move))
+
+        # change 'place_of_solver' block to '1'
+        main_maze[place_of_solver[0]][place_of_solver[1]] = int(1)
+        # move solver to next house
+        place_of_solver = solver_next_move
+        # call check_udlr and do all thing for 'solver_next_move' and put result in 'result_of_udlr'
+        result_of_udlr = check_udlr(place_of_solver, main_maze, x_of_maze, y_of_maze)
+
+
+    flag_2 = 1

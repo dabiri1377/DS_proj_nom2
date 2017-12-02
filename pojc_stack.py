@@ -1,5 +1,6 @@
 import time
 
+
 def get_maze_from_user(x_of_maze_for_get_maze):
     """
     get maze from user and return it
@@ -115,7 +116,7 @@ def check_one_side(charec, map, up, left, x_max_maze, y_max_maze):
     solver_x = charec[0] - up
     solver_y = charec[1] - left
     # check edge's
-    if solver_x < 0 or solver_x > x_max_maze or solver_y < 0 or solver_y > y_max_maze:
+    if solver_x < 0 or solver_x > (x_max_maze - 1) or solver_y < 0 or solver_y > (y_max_maze - 1):
         # for debug
         # print("find wall")
         return 1
@@ -133,7 +134,7 @@ def check_one_side(charec, map, up, left, x_max_maze, y_max_maze):
     elif map[solver_x][solver_y] == '$':
         stack_list.append([solver_x, solver_y])
         # for show exit point
-        print("find exit in ["+str(solver_x)+","+str(solver_y)+"]")
+        print("find exit in [" + str(solver_x) + "," + str(solver_y) + "]")
         return 2
 
 

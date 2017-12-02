@@ -199,12 +199,16 @@ while flag_2 == 0:
     if not stack_list:
         # for debug
         print("stack is empty")
-
         flag_2 = 1
+
     else:
         solver_next_move = stack_list.pop()
         # check position of solver not blocked
-        if main_maze[place_of_solver[0]][place_of_solver[1]] == 1:
+        if main_maze[solver_next_move[0]][solver_next_move[1]] == 1:
+            # for debug
+            #print("place for solver :"+str(solver_next_move))
+            print("stack position is full")
+
             continue
 
         # for debug
@@ -220,8 +224,9 @@ while flag_2 == 0:
         if result_of_udlr == 2:
             flag_2 = 1
             # for show progress
-            time.sleep(1)
+            time.sleep(0.3)
             show_maze(x_of_maze, y_of_maze, main_maze)
+            print("")
             # fix last block to make it good looking
             main_maze[place_of_solver[0]][place_of_solver[1]] = int(1)
 

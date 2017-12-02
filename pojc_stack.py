@@ -198,7 +198,8 @@ while flag_2 == 0:
     # check stack is empty or not
     if not stack_list:
         # for debug
-        print("List is empty")
+        print("stack is empty")
+
         flag_2 = 1
     else:
         solver_next_move = stack_list.pop()

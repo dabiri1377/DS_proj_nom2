@@ -140,7 +140,7 @@ def check_one_side(charec, map, up, left, x_max_maze, y_max_maze):
         # for debug
         # print("block is empty")
         return 0
-    elif map[solver_x][solver_y] == 1 or map[solver_x][solver_y] == '1':
+    elif map[solver_x][solver_y] == 1 or map[solver_x][solver_y] == '1' or map[solver_x][solver_y] == '%':
         # for debug
         # print("find wall")
         return 1
@@ -206,7 +206,7 @@ while flag_2 == 0:
         # check position of solver not blocked
         if main_maze[solver_next_move[0]][solver_next_move[1]] == 1:
             # for debug
-            #print("place for solver :"+str(solver_next_move))
+            # print("place for solver :"+str(solver_next_move))
             print("stack position is full")
 
             continue
@@ -215,7 +215,7 @@ while flag_2 == 0:
         print("solver next move is: " + str(solver_next_move))
 
         # change 'place_of_solver' block to '1'
-        main_maze[place_of_solver[0]][place_of_solver[1]] = int(1)
+        main_maze[place_of_solver[0]][place_of_solver[1]] = '%'
         # move solver to next house
         place_of_solver = solver_next_move
         # call check_udlr and do all thing for 'solver_next_move' and put result in 'result_of_udlr'
@@ -228,8 +228,8 @@ while flag_2 == 0:
             show_maze(x_of_maze, y_of_maze, main_maze)
             print("")
             # fix last block to make it good looking
-            main_maze[place_of_solver[0]][place_of_solver[1]] = int(1)
+            main_maze[place_of_solver[0]][place_of_solver[1]] = '%'
 
         # for show progress
-        time.sleep(1)
+        time.sleep(1.5)
         show_maze(x_of_maze, y_of_maze, main_maze)
